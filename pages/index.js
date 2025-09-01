@@ -1,44 +1,44 @@
 import { useState } from "react";
 
 export default function Home() {
-  const [token, setToken] = useState(null);
+  const [sessionId, setSessionId] = useState(null);
 
-  const handleVerify = async () => {
-    const res = await fetch("/api/verify-turnstile", {
+  async function handleVerify(token) {
+    const res = await fetch("/api/create-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token }),
     });
     const data = await res.json();
-    if (data.success) {
-      window.location.href = "/verify";
-    } else {
-      alert("Verification failed!");
-    }
-  };
+    if (data.sessionId) setSessionId(data.sessionId);
+  }
 
   return (
-    <div className="h-screen w-full relative flex flex-col items-center justify-center bg-black">
-      {/* background hexagon */}
-      <canvas id="particles" className="absolute top-0 left-0 w-full h-full" />
-      
-      <div className="z-10 text-center">
-        <h1 className="text-3xl text-white font-bold mb-6">Get Your Key</h1>
-        
-        {/* Turnstile widget */}
-        <div
-          className="cf-turnstile"
-          data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
-          data-callback={(tok) => setToken(tok)}
-        ></div>
-        
-        <button
-          onClick={handleVerify}
-          className="mt-4 px-6 py-3 rounded-2xl bg-green-500 hover:bg-green-400 text-black font-bold"
-        >
-          Get Key
-        </button>
+    <div className="min-h-screen flex items-center justify-center bg-black text-white">
+      <div className="bg-gray-900 p-6 rounded-2xl shadow-xl w-[400px]">
+        <h1 className="text-xl font-bold mb-4 text-center">🔑 Key System</h1>
+
+        {!sessionId ? (
+          <div>
+            {/* Turnstile */}
+            <div
+              className="cf-turnstile"
+              data-sitekey="YOUR_TURNSILE_SITE_KEY"
+              data-callback={(token) => handleVerify(token)}
+            />
+          </div>
+        ) : (
+          <div className="text-center">
+            <p className="mb-4">✅ Xác thực thành công!</p>
+            <a
+              href={`https://your-adslink.com/?sid=${sessionId}&next=/generator`}
+              className="bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600"
+            >
+              Get Key
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
-}
+          }
