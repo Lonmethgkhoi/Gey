@@ -1,0 +1,121 @@
+/* Reset & base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #000; /* fallback */
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Section full-screen */
+section {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+
+/* PARTICLES canvas */
+#particles {
+  background: #000000;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+}
+
+/* HEXAGON GRID background */
+#hexagonGrid {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+#hexagonGrid .row {
+  display: inline-flex;
+  margin-top: -32px;
+  margin-left: -50px;
+}
+
+#hexagonGrid .row:nth-child(even) {
+  margin-left: 2px;
+}
+
+#hexagonGrid .hexagon {
+  position: relative;
+  width: 100px; height: 110px;
+  margin: 4px 2px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+#hexagonGrid .hexagon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #000000;
+  opacity: 0.95;
+  transition: 0.6s;
+}
+
+#hexagonGrid .hexagon::after {
+  content: '';
+  position: absolute;
+  top: 4px; right: 4px; bottom: 4px; left: 4px;
+  background: #141414;
+  clip-path: inherit;
+}
+
+#hexagonGrid .hexagon:hover::before {
+  background: #8CFD0B;
+  opacity: 1;
+  transition: 0s;
+}
+
+#hexagonGrid .hexagon:hover::after {
+  background: #000000;
+}
+
+/* UI container (box/cards/nút) */
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.card {
+  background: rgba(20, 20, 20, 0.85);
+  border: 1px solid #2a2a2a;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+}
+
+button {
+  background: #8CFD0B;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+button:hover {
+  background: #6AD40A;
+  transform: scale(1.05);
+  }
