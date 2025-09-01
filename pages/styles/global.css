@@ -119,3 +119,44 @@ button:hover {
   background: #6AD40A;
   transform: scale(1.05);
   }
+.ui-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.8);
+  border-radius: 16px;
+  padding: 30px;
+  color: #fff;
+  text-align: center;
+  width: 350px;
+  box-shadow: 0 0 20px rgba(140,253,11,0.5);
+}
+
+.ui-box h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #8CFD0B;
+}
+
+.ui-box button {
+  background: #8CFD0B;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.ui-box button:hover {
+  background: #6acb0a;
+}
+
+.session-box {
+  margin-top: 20px;
+  background: #141414;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 14px;
+    }
